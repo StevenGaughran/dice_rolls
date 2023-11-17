@@ -1,6 +1,16 @@
 # The document for fooling around with the data.
+import json
 # from dice_dictionary import dice_rolls as dr
 
+def the_data():
+    """Pulls the roll data from 'dice_rolls.json'
+
+    Returns:
+        A dictionary with the dice rolls.
+    """
+    with open('dice_rolls.json', 'r') as f:
+        data = json.load(f)
+        return data
 
 def print_player_data(data=None,name=None):
     """Prints player rolls.
@@ -31,3 +41,5 @@ def pull_player_data(data=None,name=None):
     for key, value in data[name].items():
         required_info.update({key:value})
     return required_info
+
+print_player_data(data=the_data(),name="Bob")

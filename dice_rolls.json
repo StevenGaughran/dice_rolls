@@ -1,0 +1,94 @@
+{
+    "Bob": {
+        "roll1": {
+            "type": "melee",
+            "difficulty": 15,
+            "skill": false,
+            "stat":{
+                "stat": "strength",
+                "modifier": 1
+            },
+            "proficiency": {
+                "prof": true,
+                "mod": 3
+            },
+            "roll": {
+                "dice": 16,
+                "n_a_d": {
+                    "nad": "n",
+                    "dice": false
+                }
+            },
+            "total": 20,
+            "result": true
+        },
+        "roll2": {
+            "type": "save",
+            "difficulty": 15,
+            "skill": false,
+            "stat":{
+                "stat": "constitution",
+                "modifier": 2
+            },
+            "proficiency": {
+                "prof": true,
+                "mod": 3
+            },
+            "roll": {
+                "dice": 4,
+                "n_a_d": {
+                    "nad": "a",
+                    "dice": 13
+                }
+            },
+            "total": 18,
+            "result": true
+        }
+    },
+    "Grace": {
+        "roll1": {
+            "type": "ability",
+            "difficulty": 18,
+            "skill": "arcana",
+            "stat":{
+                "stat": "intelligence",
+                "modifier": 3
+            },
+            "proficiency": {
+                "prof": false,
+                "mod": 0
+            },
+            "roll": {
+                "dice": 16,
+                "n_a_d": {
+                    "nad": "d",
+                    "dice": 8
+                }
+            },
+            "total": 11,
+            "result": false
+        },
+        "roll2": {
+            "type": "initiative",
+            "difficulty": false,
+            "skill": false,
+            "stat":{
+                "stat": "dexterity",
+                "modifier": 1
+            },
+            "proficiency": {
+                "prof": false,
+                "mod": 0
+            },
+            "roll": {
+                "dice": 12,
+                "n_a_d": {
+                    "nad": "n",
+                    "dice": false
+                }
+            },
+            "total": 13,
+            "result": true
+        }
+    }
+}
