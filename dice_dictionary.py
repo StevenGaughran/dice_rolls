@@ -72,7 +72,7 @@ dice_rolls = {
         },
         'roll2': {
             "type": "initiative", 
-            # Not sure exactly the best way to track initiative rolls
+            # Not sure exactly the best way to track initiative rolls, or even if I should.
             "difficulty": False,
             "skill": False,            
             "stat":{
