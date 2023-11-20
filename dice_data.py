@@ -35,11 +35,33 @@ def pull_player_data(data=None,name=None):
         name: the name of the player from 'dr' as a string. Case-sensitive!
 
         An example: print_player_data(data=dr,name="Grace")
+    Returns:
+        a dictionary with the roll data for the specified player.
     """
     required_info = {}
-    # for roll_key, roll_value in data[name].items():
     for key, value in data[name].items():
         required_info.update({key:value})
     return required_info
 
-print_player_data(data=the_data(),name="Bob")
+def player_d20_roll_results(name=None):
+    """Extracts the "final" d20 rolls that each player made.
+    Takes Advantage/Disadvantage into consideration
+
+    Args:
+        name: the name of the player you want to pull data for. Case-sensitive!
+
+    Returns:
+          a list of integers representing the dice rolls of the player requested.
+    """
+    player_data = pull_player_data(data=the_data(),name=name)
+    numbers = []
+    for roll,details in player_data.items():
+        if details["roll"]["n_a_d"]["nad"]=="a":
+            numbers.append(details["roll"]["n_a_d"]["dice"])
+        elif details["roll"]["n_a_d"]["nad"] == "d":
+            numbers.append(details["roll"]["n_a_d"]["dice"])
+        else:
+            numbers.append(details["roll"]["dice"])
+    return numbers
+
+print(player_d20_roll_results(name="Grace"))
