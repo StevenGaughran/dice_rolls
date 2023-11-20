@@ -1,6 +1,6 @@
 # The document for fooling around with the data.
 import json
-# from dice_dictionary import dice_rolls as dr
+from statistics import mean
 
 def the_data():
     """Pulls the roll data from 'dice_rolls.json'
@@ -63,5 +63,19 @@ def player_d20_roll_results(name=None):
         else:
             numbers.append(details["roll"]["dice"])
     return numbers
+# player_d20_roll_results(name="Grace")
 
-print(player_d20_roll_results(name="Grace"))
+def the_mean(data=None):
+    """Finds the mean of all of a player's rolls.
+
+    Args:
+        data: the 'player_data' function.
+
+    Returns:
+        an integer that represents the mean of all the player's rolls.
+    """
+    numbers = data
+    meany = mean(numbers)
+    round_mean = round(meany)
+    return round_mean
+# the_mean(data=player_d20_roll_results(name="Bob"))
