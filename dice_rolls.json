@@ -20,7 +20,8 @@
                 }
             },
             "total": 20,
-            "result": true
+            "result": true,
+            "date": "20,11,2023"
         },
         "roll2": {
             "type": "save",
@@ -42,7 +43,8 @@
                 }
             },
             "total": 18,
-            "result": true
+            "result": true,
+            "date": "19,11,2023"
         }
     },
     "Grace": {
@@ -66,7 +68,8 @@
                 }
             },
             "total": 11,
-            "result": false
+            "result": false,
+            "date": "19,11,2023"
         },
         "roll2": {
             "type": "initiative",
@@ -88,7 +91,8 @@
                 }
             },
             "total": 13,
-            "result": true
+            "result": true,
+            "date": "19,11,2023"
         }
     }
 }
