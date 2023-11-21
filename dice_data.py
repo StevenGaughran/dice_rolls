@@ -1,5 +1,6 @@
 # The document for fooling around with the data.
 import json
+import pandas
 from statistics import mean
 
 def the_data():
@@ -14,9 +15,11 @@ def the_data():
 
 def print_player_data(data=None,name=None):
     """Prints player rolls.
+    Full disclosure here: this was mostly created for me to test that I did this right.
+    "Why didn't you use PyTest, Steve?" Why don't you mind ya business, random person!
 
     Args:
-        data: the dictionary from 'dr'
+        data: the dictionary from 'the_data'
         name: the name of the player from 'dr' as a string. Case-sensitive!
 
         An example: print_player_data(data=dr,name="Grace")
@@ -31,12 +34,13 @@ def pull_player_data(data=None,name=None):
     """Pulls the dictionary data for player rolls.
 
     Args:
-        data: the dictionary from 'dr'
+        data: the dictionary from 'the_data'
         name: the name of the player from 'dr' as a string. Case-sensitive!
 
-        An example: print_player_data(data=dr,name="Grace")
     Returns:
-        a dictionary with the roll data for the specified player.
+        A dictionary with the roll data for the specified player.
+    Example:
+        print_player_data(data=dr,name="Grace")
     """
     required_info = {}
     for key, value in data[name].items():
@@ -52,6 +56,8 @@ def player_d20_roll_results(name=None):
 
     Returns:
           a list of integers representing the dice rolls of the player requested.
+    Example:
+         player_d20_roll_results(name="Grace")
     """
     player_data = pull_player_data(data=the_data(),name=name)
     numbers = []
@@ -63,7 +69,6 @@ def player_d20_roll_results(name=None):
         else:
             numbers.append(details["roll"]["dice"])
     return numbers
-# player_d20_roll_results(name="Grace")
 
 def the_mean(data=None):
     """Finds the mean of all of a player's rolls.
@@ -73,9 +78,14 @@ def the_mean(data=None):
 
     Returns:
         an integer that represents the mean of all the player's rolls.
+    Example:
+        the_mean(data=player_d20_roll_results(name="Bob"))
     """
     numbers = data
     meany = mean(numbers)
     round_mean = round(meany)
     return round_mean
-# the_mean(data=player_d20_roll_results(name="Bob"))
+
+# Messing around with Pandas, please ignore.
+pd = pandas.DataFrame.from_dict(the_data(),orient="index")
+print(pd)
