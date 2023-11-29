@@ -1,4 +1,3 @@
-# The document for fooling around with the data.
 import json
 import random
 import pandas
@@ -14,7 +13,7 @@ def the_data():
         data = json.load(f)
         return data
 
-def get_numbers():
+def get_many_numbers():
     """A quick way to get 100 integers between 1 and 20.
 
         Returns:
@@ -26,7 +25,16 @@ def get_numbers():
         nums.append(y)
     return nums
 
-def print_player_data(data=None,name=None):
+def get_single_number():
+    """Get one integer between 1 and 20.
+
+        Returns:
+            An integer between 1 and 20.
+        """
+    num = random.randrange(1,21)
+    return num
+
+def print_player_data(data=the_data(),name=None):
     """Prints player rolls.
     Full disclosure here: this was mostly created for me to test that I did this right.
     "Why didn't you use PyTest, Steve?" Why don't you mind ya business, random person!
@@ -43,7 +51,7 @@ def print_player_data(data=None,name=None):
             print(f"  {key}: {value}")
         print()
 
-def pull_player_data(data=None,name=None):
+def pull_player_data(data=the_data(),name=None):
     """Pulls the dictionary data for player rolls.
 
     Args:
@@ -53,7 +61,7 @@ def pull_player_data(data=None,name=None):
     Returns:
         A dictionary with the roll data for the specified player.
     Example:
-        print_player_data(data=the_data(),name="Grace")
+        print_player_data(name="Grace")
     """
     required_info = {}
     for key, value in data[name].items():
@@ -83,6 +91,49 @@ def player_d20_roll_results(name=None):
             numbers.append(details["roll"]["dice"])
     return numbers
 
+def date_results(name=None,date=None):
+    """Pulls the dice results for a specific date.
+
+        Args:
+            name: the name of the player
+            date: the date as a string, "day,month,year", e.g., "03,12,2023" for December 3, 2023.
+        Returns:
+            A list of integers representing the dice rolls for the given date.
+        Example:
+            date_results(name='Bob',date="19,11,2023")
+    """
+    player_data = pull_player_data(data=the_data(),name=name)
+    numbers = []
+    for roll, details in player_data.items():
+        if details["date"]==date:
+                if details["roll"]["n_a_d"]["nad"] == "a":
+                    numbers.append(details["roll"]["n_a_d"]["dice"])
+                elif details["roll"]["n_a_d"]["nad"] == "d":
+                    numbers.append(details["roll"]["n_a_d"]["dice"])
+                else:
+                    numbers.append(details["roll"]["dice"])
+    return numbers
+
+def sort_dates(name=None,date=None):
+    """Pulls the dice rolls for a specific date.
+
+        Args:
+            name: the name of the player
+            date: the date as a string, "day,month,year", e.g., "03,12,2023" for December 3, 2023.
+        Returns:
+            A dictionary of roll data pertaining to the given date.
+        Example:
+            sort_dates(name="Grace",date="19,11,2023")
+    """
+    player_data = pull_player_data(data=the_data(), name=name)
+    rolls = {}
+    roll_num = 1
+    for roll, details in player_data.items():
+        if details["date"] == date:
+            rolls[f"{roll_num}"]=details
+            roll_num+=1
+    return rolls
+
 def the_mean(data=None):
     """Finds the mean of all of a player's rolls.
 
@@ -103,5 +154,4 @@ def the_mean(data=None):
 # pd = pandas.DataFrame.from_dict(the_data(),orient="index")
 # print(pd)
 
-pull_player_data(data=the_data(),name="Bob")
-print(get_numbers())
+print(sort_dates(name="Grace", date="19,11,2023"))
