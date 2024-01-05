@@ -125,7 +125,7 @@ def sort_dates(name=None,date=None):
         Example:
             sort_dates(name="Grace",date="19,11,2023")
     """
-    player_data = pull_player_data(data=the_data(), name=name)
+    player_data = pull_player_data(name=name)
     rolls = {}
     roll_num = 1
     for roll, details in player_data.items():
@@ -153,5 +153,3 @@ def the_mean(data=None):
 # Messing around with Pandas, please ignore.
 # pd = pandas.DataFrame.from_dict(the_data(),orient="index")
 # print(pd)
-
-print(sort_dates(name="Grace", date="19,11,2023"))
